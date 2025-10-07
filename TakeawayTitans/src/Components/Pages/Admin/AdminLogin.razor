@@ -40,15 +40,18 @@
 @code {
     [SupplyParameterFromForm]
     private LoginModel LoginUser {get; set;} = new ();
+    @* [Inject] protected PreloadService PreloadService {get; set;} = default!; *@
+
     private string errorMessage = string.Empty;
-    private bool isLoading = false;
+    @* private bool isLoading = false; *@
     
     private async void HandleLogin()
     {
-        isLoading = true;
+        @* isLoading = true; *@
         errorMessage = string.Empty;
         try 
         {
+            @* PreloadService.Show(); *@
             var customAuthenticationStateProvider = (CustomAuthStateProvider)AuthenticationStateProvider;
 
             if (string.IsNullOrWhiteSpace(LoginUser.Email) || string.IsNullOrWhiteSpace(LoginUser.Password))
@@ -73,7 +76,8 @@
         }
         finally
         {
-            isLoading = false;
+            @* isLoading = false; *@
+            @* PreloadService.Hide(); *@
         }
     }
 
