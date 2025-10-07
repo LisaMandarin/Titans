@@ -18,14 +18,14 @@
         <div class="form-group">
             <label>Email: <span class="text-danger">*</span></label>
             <div>
-                <TextInput @bind-value="@LoginUser.Email" Placeholder="Enter email address" class="fs-4" />
+                <TextInput @bind-Value="LoginUser.Email" Placeholder="Enter email address" class="fs-4" />
                 <ValidationMessage For="() => LoginUser.Email" />
             </div>
         </div>
         <div class=form-group>
             <label>Password: <span class="text-danger">*</span></label>
             <div>
-                <TextInput @bind-value="@LoginUser.Password" Placeholder="Enter password" Class="fs-4" />
+                <TextInput @bind-Value="@LoginUser.Password" Placeholder="Enter password" Class="fs-4" />
                 <ValidationMessage For="() => LoginUser.Password" />
             </div>
         </div>
