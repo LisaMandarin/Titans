@@ -1,29 +1,33 @@
 @page "/postlogin"
-@inject IHttpContextAccessor HttpContextAccessor
-@inject NavigationManager NavigationManager
+@inject IHttpContextAccessor Http
+@inject NavigationManager Nav
 
 @code {
-    [SupplyParameterFromQuery]
-    private string? Token { get; set; }
+  [SupplyParameterFromQuery(Name = "token")]
+  public string? Token { get; set; }
+  bool _done;
 
-    protected override void OnInitialized()
+  protected override Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (!firstRender || _done) return Task.CompletedTask;
+    _done = true;
+
+    if (!string.IsNullOrWhiteSpace(Token))
     {
-        if (string.IsNullOrEmpty(Token))
-        {
-            NavigationManager.NavigateTo("/admin-login", replace: true);
+      Http.HttpContext!.Response.Cookies.Append(
+        BlazorConstants.AuthCookieName,                // must match your provider & cookie options
+        Token,
+        new CookieOptions {
+          HttpOnly = true,
+          Secure = true,                               // Render uses HTTPS
+          SameSite = SameSiteMode.Lax,
+          Expires = DateTimeOffset.UtcNow.AddMinutes(30)
         }
-        else
-        {
-            HttpContextAccessor.HttpContext!.Response.Cookies.Append(
-                BlazorConstants.AuthCookieName, 
-                Token, 
-                new CookieOptions { HttpOnly = true, Expires = DateTimeOffset.Now.AddMinutes(30)}
-            );
-            NavigationManager.NavigateTo("/admin-dashboard", replace: true);
-        }
+      );
     }
-    protected override void OnAfterRender(bool firstRender)
-    {
-        
-    }
+
+    // hop to the dashboard with a clean URL
+    Nav.NavigateTo("/admin-dashboard", replace: true, forceLoad: true);
+    return Task.CompletedTask;
+  }
 }

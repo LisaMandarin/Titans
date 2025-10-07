@@ -27,7 +27,8 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
     {
         try
         {
-            if (_httpContextAccessor.HttpContext!.Request.Cookies.ContainsKey(BlazorConstants.AuthCookieName))
+            var test = _httpContextAccessor.HttpContext!.Request.Cookies.ContainsKey(BlazorConstants.AuthCookieName);
+            if (test)
             {
                 var token = _httpContextAccessor.HttpContext.Request.Cookies[BlazorConstants.AuthCookieName];
                 var handler = new JwtSecurityTokenHandler();

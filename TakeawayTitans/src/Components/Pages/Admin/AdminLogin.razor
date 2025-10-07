@@ -25,7 +25,7 @@
         <div class=form-group>
             <label>Password: <span class="text-danger">*</span></label>
             <div>
-                <TextInput @bind-Value="@LoginUser.Password" Placeholder="Enter password" Class="fs-4" />
+                <PasswordInput @bind-Value="LoginUser.Password" Placeholder="Enter password" Class="fs-4" />
                 <ValidationMessage For="() => LoginUser.Password" />
             </div>
         </div>
@@ -59,7 +59,7 @@
 
             var token = await customAuthenticationStateProvider.LoginAsync(LoginUser.Email, LoginUser.Password);
             
-            Navigation.NavigateTo("/postlogin?Token=" + token);
+            Navigation.NavigateTo($"/postlogin?token={Uri.EscapeDataString(token)}", forceLoad: true);
         }
         catch (DbException ex)
         {
