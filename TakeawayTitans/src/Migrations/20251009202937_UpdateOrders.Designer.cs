@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TakeawayTitans.Data;
@@ -11,9 +12,11 @@ using TakeawayTitans.Data;
 namespace TakeawayTitans.Migrations
 {
     [DbContext(typeof(TakeawayTitansContext))]
-    partial class TakeawayTitansContextModelSnapshot : ModelSnapshot
+    [Migration("20251009202937_UpdateOrders")]
+    partial class UpdateOrders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,12 +146,6 @@ namespace TakeawayTitans.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("OrderId"));
 
-                    b.Property<DateTime?>("CanceledAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("CompletedAt")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -163,15 +160,6 @@ namespace TakeawayTitans.Migrations
                     b.Property<string>("CustomerPhone")
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
-
-                    b.Property<DateTime?>("PreparingAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("ReadyAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("ReceivedAt")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -192,7 +180,6 @@ namespace TakeawayTitans.Migrations
                             CustomerEmail = "morgan.park@example.com",
                             CustomerName = "Morgan Park",
                             CustomerPhone = "555-0912",
-                            ReceivedAt = new DateTime(2025, 10, 3, 10, 0, 0, 0, DateTimeKind.Utc),
                             Status = "Received"
                         },
                         new
@@ -202,8 +189,6 @@ namespace TakeawayTitans.Migrations
                             CustomerEmail = "jamie.johnson@example.com",
                             CustomerName = "Jamie Johnson",
                             CustomerPhone = "555-0134",
-                            PreparingAt = new DateTime(2025, 10, 1, 15, 30, 0, 0, DateTimeKind.Utc),
-                            ReceivedAt = new DateTime(2025, 10, 1, 15, 15, 0, 0, DateTimeKind.Utc),
                             Status = "Preparing"
                         },
                         new
@@ -213,34 +198,24 @@ namespace TakeawayTitans.Migrations
                             CustomerEmail = "taylor.nguyen@example.com",
                             CustomerName = "Taylor Nguyen",
                             CustomerPhone = "555-0456",
-                            PreparingAt = new DateTime(2025, 10, 2, 11, 5, 0, 0, DateTimeKind.Utc),
-                            ReadyAt = new DateTime(2025, 10, 2, 11, 15, 0, 0, DateTimeKind.Utc),
-                            ReceivedAt = new DateTime(2025, 10, 2, 11, 0, 0, 0, DateTimeKind.Utc),
                             Status = "Ready"
                         },
                         new
                         {
                             OrderId = 4,
-                            CompletedAt = new DateTime(2025, 10, 3, 11, 30, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2025, 10, 3, 11, 30, 0, 0, DateTimeKind.Utc),
                             CustomerEmail = "riley.santos@example.com",
                             CustomerName = "Riley Santos",
                             CustomerPhone = "555-0933",
-                            PreparingAt = new DateTime(2025, 10, 3, 11, 15, 0, 0, DateTimeKind.Utc),
-                            ReadyAt = new DateTime(2025, 10, 3, 11, 25, 0, 0, DateTimeKind.Utc),
-                            ReceivedAt = new DateTime(2025, 10, 3, 11, 10, 0, 0, DateTimeKind.Utc),
                             Status = "Completed"
                         },
                         new
                         {
                             OrderId = 5,
-                            CanceledAt = new DateTime(2025, 10, 3, 12, 45, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2025, 10, 3, 12, 45, 0, 0, DateTimeKind.Utc),
                             CustomerEmail = "jordan.lee@example.com",
                             CustomerName = "Jordan Lee",
                             CustomerPhone = "555-0977",
-                            PreparingAt = new DateTime(2025, 10, 3, 12, 35, 0, 0, DateTimeKind.Utc),
-                            ReceivedAt = new DateTime(2025, 10, 3, 12, 30, 0, 0, DateTimeKind.Utc),
                             Status = "Canceled"
                         });
                 });
@@ -395,56 +370,56 @@ namespace TakeawayTitans.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 10, 9, 20, 48, 7, 839, DateTimeKind.Utc).AddTicks(120),
+                            CreatedAt = new DateTime(2025, 10, 9, 20, 29, 37, 421, DateTimeKind.Utc).AddTicks(6060),
                             Email = "test@gmail.com",
                             FirstName = "Test",
                             ImageUrl = "https://picsum.photos/id/64/200",
                             LastName = "User",
-                            PasswordHash = "$2a$11$xoIM0oqtdW5lkYjc90se3uqcLhPl3iITEeKqHKHISK2W/eKvHd8x6",
+                            PasswordHash = "$2a$11$sNGQfq9a47kH7XGt5UsTLeshuume3lV7zjCJxoMqXX4.BSXtz1Ryy",
                             Role = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 10, 9, 20, 48, 7, 839, DateTimeKind.Utc).AddTicks(120),
+                            CreatedAt = new DateTime(2025, 10, 9, 20, 29, 37, 421, DateTimeKind.Utc).AddTicks(6070),
                             Email = "alice.johnson@example.com",
                             FirstName = "Alice",
                             ImageUrl = "https://picsum.photos/id/101/200",
                             LastName = "Johnson",
-                            PasswordHash = "$2a$11$xoIM0oqtdW5lkYjc90se3uqcLhPl3iITEeKqHKHISK2W/eKvHd8x6",
+                            PasswordHash = "$2a$11$sNGQfq9a47kH7XGt5UsTLeshuume3lV7zjCJxoMqXX4.BSXtz1Ryy",
                             Role = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 10, 9, 20, 48, 7, 839, DateTimeKind.Utc).AddTicks(120),
+                            CreatedAt = new DateTime(2025, 10, 9, 20, 29, 37, 421, DateTimeKind.Utc).AddTicks(6070),
                             Email = "bob.smith@example.com",
                             FirstName = "Bob",
                             ImageUrl = "https://picsum.photos/id/102/200",
                             LastName = "Smith",
-                            PasswordHash = "$2a$11$xoIM0oqtdW5lkYjc90se3uqcLhPl3iITEeKqHKHISK2W/eKvHd8x6",
+                            PasswordHash = "$2a$11$sNGQfq9a47kH7XGt5UsTLeshuume3lV7zjCJxoMqXX4.BSXtz1Ryy",
                             Role = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 10, 9, 20, 48, 7, 839, DateTimeKind.Utc).AddTicks(130),
+                            CreatedAt = new DateTime(2025, 10, 9, 20, 29, 37, 421, DateTimeKind.Utc).AddTicks(6070),
                             Email = "carol.davis@example.com",
                             FirstName = "Carol",
                             ImageUrl = "https://picsum.photos/id/103/200",
                             LastName = "Davis",
-                            PasswordHash = "$2a$11$xoIM0oqtdW5lkYjc90se3uqcLhPl3iITEeKqHKHISK2W/eKvHd8x6",
+                            PasswordHash = "$2a$11$sNGQfq9a47kH7XGt5UsTLeshuume3lV7zjCJxoMqXX4.BSXtz1Ryy",
                             Role = 0
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2025, 10, 9, 20, 48, 7, 839, DateTimeKind.Utc).AddTicks(130),
+                            CreatedAt = new DateTime(2025, 10, 9, 20, 29, 37, 421, DateTimeKind.Utc).AddTicks(6080),
                             Email = "david.martinez@example.com",
                             FirstName = "David",
                             ImageUrl = "https://picsum.photos/id/104/200",
                             LastName = "Martinez",
-                            PasswordHash = "$2a$11$xoIM0oqtdW5lkYjc90se3uqcLhPl3iITEeKqHKHISK2W/eKvHd8x6",
+                            PasswordHash = "$2a$11$sNGQfq9a47kH7XGt5UsTLeshuume3lV7zjCJxoMqXX4.BSXtz1Ryy",
                             Role = 0
                         });
                 });
